@@ -2,6 +2,7 @@ let zoff = 0;
 let slider;
 let r = 0
 let noiseMax = 1.8
+let phase = 0
 
 let Hr = 0, Min = 0, Sec = 0;
 
@@ -39,8 +40,8 @@ function drawRahoboam() {
 
   noiseSeed(0)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, 15);
-    let yoff = map(sin(a), -1, 1, 0, 15);
+    let xoff = map(cos(a + phase), -1, 1, 0, 15);
+    let yoff = map(sin(a + phase), -1, 1, 0, 15);
     r = map(noise(xoff, yoff, zoff), 0, 1, 110, 150);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -49,8 +50,8 @@ function drawRahoboam() {
   
   noiseSeed(1)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, noiseMax);
-    let yoff = map(sin(a), -1, 1, 0, noiseMax);
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
     r = map(noise(xoff, yoff, zoff), 0, 1, 70, 170);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -59,8 +60,8 @@ function drawRahoboam() {
   
   noiseSeed(2)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, noiseMax);
-    let yoff = map(sin(a), -1, 1, 0, noiseMax);
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
     r = map(noise(xoff, yoff, zoff), 0, 1, 80, 160);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -69,8 +70,8 @@ function drawRahoboam() {
   
   noiseSeed(3)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, noiseMax);
-    let yoff = map(sin(a), -1, 1, 0, noiseMax);
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
     r = map(noise(xoff, yoff, zoff), 0, 1, 90, 150);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -79,8 +80,8 @@ function drawRahoboam() {
   
   noiseSeed(4)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, noiseMax);
-    let yoff = map(sin(a), -1, 1, 0, noiseMax);
+    let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
+    let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
     r = map(noise(xoff, yoff, zoff), 0, 1, 100, 140);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -89,8 +90,8 @@ function drawRahoboam() {
 
   noiseSeed(5)
   for (let a = 0; a < TWO_PI; a += radians(0.65)) {
-    let xoff = map(cos(a), -1, 1, 0, 1.8*a);
-    let yoff = map(sin(a), -1, 1, 0, 1.8*a);
+    let xoff = map(cos(a + phase), -1, 1, 0, 1.8*a);
+    let yoff = map(sin(a + phase), -1, 1, 0, 1.8*a);
     r = map(noise(xoff, yoff, zoff), 0, 1, 110, 130);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -99,8 +100,8 @@ function drawRahoboam() {
   
   noiseSeed(6)
   for (let a = 0; a < TWO_PI; a += radians(0.55)) {
-    let xoff = map(cos(a), -1, 1, 0, 1.8*a);
-    let yoff = map(sin(a), -1, 1, 0, 1.8*a);
+    let xoff = map(cos(a + phase), -1, 1, 0, 1.8*a);
+    let yoff = map(sin(a + phase), -1, 1, 0, 1.8*a);
     r = map(noise(xoff, yoff, zoff), 0, 1, hour_rad - amp, hour_rad + amp);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -109,8 +110,8 @@ function drawRahoboam() {
   
   noiseSeed(7)
   for (let a = 0; a < TWO_PI; a += radians(0.45)) {
-    let xoff = map(cos(a), -1, 1, 0, 1.8*a);
-    let yoff = map(sin(a), -1, 1, 0, 1.8*a);
+    let xoff = map(cos(a + phase), -1, 1, 0, 1.8*a);
+    let yoff = map(sin(a + phase), -1, 1, 0, 1.8*a);
     r = map(noise(xoff, yoff, zoff), 0, 1, min_rad - amp, min_rad + amp);
     let x = r * cos(a);
     let y = r * sin(a);
@@ -119,14 +120,15 @@ function drawRahoboam() {
   
   noiseSeed(8)
   for (let a = 0; a < TWO_PI; a += radians(0.35)) {
-    let xoff = map(cos(a), -1, 1, 0, 1.8*a);
-    let yoff = map(sin(a), -1, 1, 0, 1.8*a);
+    let xoff = map(cos(a + phase), -1, 1, 0, 1.8*a);
+    let yoff = map(sin(a + phase), -1, 1, 0, 1.8*a);
     r = map(noise(xoff, yoff, zoff), 0, 1, sec_rad - amp, sec_rad + amp);
     let x = r * cos(a);
     let y = r * sin(a);
     line(sec_rad * cos(a), sec_rad * sin(a), x, y)
   }
   
+  phase += 0.003;
   zoff += 0.01;
 }
 
@@ -163,7 +165,7 @@ function drawClock() {
   pop();
   
   // Hours display
-  let hourAngle = map(Hr % 12, 0, 12, 0, TWO_PI) + minAngle/60;
+  let hourAngle = map(Hr % 12, 0, 12, 0, TWO_PI) + minAngle/12;
   push();
   rotate(hourAngle - radians(1.5));
   drawHand(hour_rad);

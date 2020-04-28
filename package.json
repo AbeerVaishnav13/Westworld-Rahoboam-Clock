@@ -12,18 +12,14 @@
   },
   "build": {
     "appId": "com.westworld.rahoboam.clock",
-    "productName": "Westworld Rahoboam Clock"
+    "productName": "Westworld Rahoboam Clock",
+    "dmg": {
+    	"backgroundColor": "#969696",
+    	"icon": "./build/icon.icns"
+    }
   },
   "devDependencies": {
     "electron": "^8.2.4",
     "electron-builder": "^22.5.1"
-  },
-  "repository": "https://github.com/AbeerVaishnav13/Westworld-Rahoboam-Clock",
-  "keywords": [
-  	"Westworld",
-  	"Rahoboam",
-  	"Clock",
-  	"P5.js",
-  	"Electron"
-  ]
+  }
 }

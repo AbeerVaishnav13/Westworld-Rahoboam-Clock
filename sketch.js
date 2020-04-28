@@ -1,14 +1,21 @@
+let canvasSize = 700
 let zoff = 0;
 let slider;
-let r = 0
-let noiseMax = 1.8
+let r = 0;
+let noiseMax = 1.8;
 
 let Hr = 0, Min = 0, Sec = 0;
+let prev_second = 0;
 
-let sec_rad = 240
-let min_rad = 200
-let hour_rad = 160
-let amp = 30
+let sec_rad = 240;
+let min_rad = 200;
+let hour_rad = 160;
+let amp = 30;
+
+let outer_radii = 275;
+let outer_amp = 75;
+
+let i = 0;
 
 function drawRahoboam() {
   stroke(0);
@@ -16,7 +23,7 @@ function drawRahoboam() {
   noFill();
   
   push();
-  strokeWeight(12)
+  strokeWeight(12);
   push();
   translate(-70, 0)
   rotate(radians(-20))
@@ -126,6 +133,17 @@ function drawRahoboam() {
     let y = r * sin(a);
     line(sec_rad * cos(a), sec_rad * sin(a), x, y)
   }
+
+  noiseSeed(9)
+  stroke(255)
+  for (let a = 0; a < TWO_PI; a += radians(0.35)) {
+    let xoff = map(cos(a), -1, 1, 0, 1.8*a);
+    let yoff = map(sin(a), -1, 1, 0, 1.8*a);  
+    r = map(noise(xoff, yoff, zoff), 0, 1, outer_radii, outer_radii + outer_amp);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    line(outer_radii * cos(a), outer_radii * sin(a), x, y)
+  }
   
   zoff += 0.01;
 }
@@ -148,10 +166,11 @@ function drawClock() {
   
   push();
   rotate(-HALF_PI-radians(8.5))
+
   // Seconds display
   let secAngle = map(Sec, 0, 60, 0, TWO_PI);
   push();
-  rotate(secAngle + radians(1.5));
+  rotate(secAngle + radians(1.5) + i);
   drawHand(sec_rad);
   pop();
   
@@ -173,22 +192,29 @@ function drawClock() {
 }
 
 function setup() {
-  createCanvas(550, 550);
+  createCanvas(canvasSize, canvasSize);
 }
 
 function draw() {
-  // background(255);
+  clear()
   translate(width / 2, height / 2);
   push()
   noStroke();
   fill(255);
-  ellipse(0, 0, width, height);
+  ellipse(0, 0, 555, 555);
   pop()
   
   Hr = hour()
   Min = minute()
   Sec = second()
+
+  if(prev_second !=  Sec) {
+    i = 0;
+    prev_second = Sec;
+  }
   
   drawRahoboam();
   drawClock();
+
+  i += radians(0.383);
 }

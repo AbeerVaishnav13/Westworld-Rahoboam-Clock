@@ -1,7 +1,7 @@
 # Westworld Rahoboam Clock
 
 To run, follow these instructions:-
-	
+
 	# Open terminal and type this to clocne the repo
 	git clone https://github.com/AbeerVaishnav13/Westworld-Rahoboam-Clock
 
